@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./styles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+   <title>El Ahorcado</title>
+</head>
+<body>
+
+   <div class="container-start-game" id="container-start-game">
+      <img src="./img/heart-balloon.svg" alt="Heart with balloon.">
+      <button class="start-game-button" id="start-game-button" onclick="startGame()" type="button">¡Jugar!</button>
+   </div>
+
+   <div class="container-started-game" id="container-started-game">
+
+      <div class="container-info-extra" id="container-info-extra">
+
+         <!-- <div class="container-clue-heart" id="container-clue-heart">
+            <img class="clue-heart" id="clue-heart-1" src="./img/clue-heart.svg" alt="">
+            <img class="clue-heart" id="clue-heart-2" src="./img/clue-heart.svg" alt="">
+            <img class="clue-heart" id="clue-heart-3" src="./img/clue-heart.svg" alt="">
+         </div>
+   
+         <div class="container-clue" id="container-clue">
+            <p class="" id=""></p>
+         </div> -->
+   
+
+   
+      </div>
+   
+      <div class="container-sentence" id="container-sentence"></div>
+   
+      <div class="container-keyboard-drawing" id="container-keyboard-drawing">
+   
+         <div class="container-keyboard" id="container-keyboard">
+
+            <div class="regular-alphabet" id="regular-alphabet">
+
+               <div class="first-row">
+
+                  <button class="regular-character" id="button-a" onclick="guessLetter(`a`)">a</button>
+                  <button class="regular-character" id="button-b" onclick="guessLetter(`b`)">b</button>
+                  <button class="regular-character" id="button-c" onclick="guessLetter(`c`)">c</button>
+                  <button class="regular-character" id="button-d" onclick="guessLetter(`d`)">d</button>
+                  <button class="regular-character" id="button-e" onclick="guessLetter(`e`)">e</button>
+                  <button class="regular-character" id="button-f" onclick="guessLetter(`f`)">f</button>
+                  <button class="regular-character" id="button-g" onclick="guessLetter(`g`)">g</button>
+                  <button class="regular-character" id="button-h" onclick="guessLetter(`h`)">h</button>
+                  <button class="regular-character" id="button-i" onclick="guessLetter(`i`)">i</button>
+                  <button class="regular-character" id="button-j" onclick="guessLetter(`j`)">j</button>
+                  <button class="regular-character" id="button-k" onclick="guessLetter(`k`)">k</button>
+                  <button class="regular-character" id="button-l" onclick="guessLetter(`l`)">l</button>
+                  <button class="regular-character" id="button-m" onclick="guessLetter(`m`)">m</button>
+                  <button class="regular-character" id="button-n" onclick="guessLetter(`n`)">n</button>
+                  <button class="regular-character" id="button-ñ" onclick="guessLetter(`ñ`)">ñ</button>
+               </div>
+
+               <div class="second-row">
+                  <button class="regular-character" id="button-o" onclick="guessLetter(`o`)">o</button>
+                  <button class="regular-character" id="button-p" onclick="guessLetter(`p`)">p</button>
+                  <button class="regular-character" id="button-q" onclick="guessLetter(`q`)">q</button>
+                  <button class="regular-character" id="button-r" onclick="guessLetter(`r`)">r</button>
+                  <button class="regular-character" id="button-s" onclick="guessLetter(`s`)">s</button>
+                  <button class="regular-character" id="button-t" onclick="guessLetter(`t`)">t</button>
+                  <button class="regular-character" id="button-u" onclick="guessLetter(`u`)">u</button>
+                  <button class="regular-character" id="button-v" onclick="guessLetter(`v`)">v</button>
+                  <button class="regular-character" id="button-w" onclick="guessLetter(`w`)">w</button>
+                  <button class="regular-character" id="button-x" onclick="guessLetter(`x`)">x</button>
+                  <button class="regular-character" id="button-y" onclick="guessLetter(`y`)">y</button>
+                  <button class="regular-character" id="button-z" onclick="guessLetter(`z`)">z</button>
+               </div>
+
+               
+               
+            </div>
+
+            <div class="special-characters-alphabet" id="special-characters-alphabet">
+               <button class="special-character" id="button-á" onclick="guessLetter(`á`)">á</button>
+               <button class="special-character" id="button-é" onclick="guessLetter(`é`)">é</button>
+               <button class="special-character" id="button-í" onclick="guessLetter(`í`)">í</button>
+               <button class="special-character" id="button-ó" onclick="guessLetter(`ó`)">ó</button>
+               <button class="special-character" id="button-ú" onclick="guessLetter(`ú`)">ú</button>
+            </div>
+            
+         </div>
+   
+         <div class="attempts-counter" id="attempts-counter">
+            <img class="attempts-left" id="attempts-left" src="./img/10-attempts-left.svg" alt="Attempts left.">
+         </div>
+   
+      </div>
+
+   </div>
+   
+   <script src="./main.js"></script>
+
+</body>
+</html>

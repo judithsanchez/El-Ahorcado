@@ -1,0 +1,141 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 62.5%;
+
+}
+
+:root {
+  --main-blue: #47D8E0;
+  --white: #FFFFFF;
+  --ligth-gray: #D3D6DD;
+  --dark-gray: #6A6C72;
+  --black: #000000;
+  --red: #EF3A4E;
+  --roboto: font-family: 'Roboto', sans-serif;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+}
+
+.container-start-game {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   margin: 10%;
+}
+
+.start-game-button {
+   background-color: var(--main-blue);
+   border: 0px solid;
+   border-radius: 3.7rem;
+   color: var(--white);
+   height: fit-content;
+   font-family: var(--roboto);
+   font-size: 6.4rem;
+   font-weight: 400;
+   padding: 10px;
+
+}
+
+.container-started-game {
+   display: none;
+   flex-direction: column;
+}
+
+.clue-heart {
+   height: 1.7rem;
+   margin: 1rem;
+   width: 1.9rem;
+   
+}
+
+.container-sentence {
+   display: inline-flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   margin: 10% 0;
+}
+
+.container-sentence div {
+   display: flex;
+   height: 5rem;
+   margin: 3rem;
+   text-align: center;
+ }
+
+.container-sentence p {
+   background-color: white;
+   border: white 0px solid;
+   border-radius: 5px;
+   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.25);
+   color: var(--white);
+   font-size: 30px;
+   padding: 1rem 2rem;
+}  
+
+.container-sentence span {
+   background-color: coral;   
+   width: 3rem;
+} 
+
+.container-keyboard-drawing {
+   display: flex;
+   justify-content: space-around;
+}
+
+.container-keyboard {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.first-row {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.second-row {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.regular-character {
+   background: var(--ligth-gray);
+   border: 0px solid;
+   border-radius: 5px;
+   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+   font-size: 3rem;
+   margin: 2rem 0.5rem;
+   width: 50px;
+   height: 50px;
+}
+
+.special-characters-alphabet {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.special-character {
+   background: var(--ligth-gray);
+   border: 0px solid;
+   border-radius: 5px;
+   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+   font-size: 2rem;
+   margin: 0.25rem;
+   width: 3rem;
+   height: 3rem;
+}
+
+.attempts-left {
+   height: 32rem;
+   width: 28.5rem;
+}
