@@ -2,17 +2,16 @@ class Game {
 
    constructor(sentence) {
 
-      this.sentence = sentence;
-      this.gameFeedback = this.convertWordToStars(); // To know the current guess status of the game, and use it for the guess function. Also to knoe when you won.
-      this.sentenceIntoWords = this.sentence.split(" "); // To create the boxes on the html
-      this.numberOfWords = this.sentenceIntoWords.length; // Extra info
-      this.attemptsLeft = 10; // To know when you lost.
-      this.gameStatus = "in progress";
+      this.originalSentence = sentence;
+      this.gameFeedback = this.wordToStars(); 
+      this.attemptsLeft = 10; 
+      this.gameStatus = "in progress"; 
    }
 
-   guess(letter) {
 
-      if (!this.sentence.includes(letter)) {
+   guess(letter) { 
+
+      if (!this.originalSentence.includes(letter)) {
          this.attemptsLeft--
 
          if (this.attemptsLeft <= 0) {
@@ -23,7 +22,7 @@ class Game {
 
       this.gameFeedback.forEach((e, i) => {
 
-         if (this.sentence[i] === letter) {
+         if (this.originalSentence[i] === letter) {
             this.gameFeedback[i] = letter;
          }
 
@@ -36,14 +35,14 @@ class Game {
       return this.gameFeedback;
    }
 
-   convertWordToStars() {
+   wordToStars() {
 
-      let gameFeedback = (this.sentence).split("")
+      let gameFeedback = (this.originalSentence).split("")
 
       gameFeedback.forEach((x, i) => {
          gameFeedback[i] === " " ? gameFeedback[i] = " " : gameFeedback[i] = "*"
       });
 
-      return gameFeedback
+      return gameFeedback.join("")
    }
 }
