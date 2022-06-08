@@ -1,3 +1,68 @@
+class Sentence {
+
+   spanishSpecialCharacters = ["á","é","í","ó","ú","ü","Á","É","Í","Ó","Ú","Ü"];
+   regularCharacters = ["a","e","i","o","u","u","A","E","I","O","U","U"];
+   
+   constructor(sentence) {
+      this.originalSentence = this.isArrayOrString(sentence) //Can get a random sentence from an array (strings or array) or the user's input
+      
+      this.numberOfWords = this.separatedIntoWords(this.originalSentence).length // Create <div>
+      this.totalCharacters = this.noWhitespaces(this.originalSentence).length // Create <p>
+
+      this.numberIndividualChracters = this.noDuplicatedCharacters(this.noWhitespaces(this.originalSentence)).length // Clue
+      this.areThereSpecialCharacters = this.checkForSpecialCharacters(this.originalSentence) // Clue
+   }
+
+   isArrayOrString(sentence) { 
+      if (!Array.isArray(sentence) && typeof(sentence) === "string") {
+         return sentence;
+      }
+      if (Array.isArray(sentence)) {
+         const oneSentence = sentence[Math.floor(Math.random() * sentence.length)];
+         return oneSentence.toString()
+      }
+   }
+
+   toLowerCase() { //Lower case sentence:  otra más
+      return this.originalSentence.toLowerCase()
+   }
+
+   noWhitespaces() { //Sentence without spaces:  Holaquétal
+      return this.originalSentence.replace(/\s/g, '')
+   }
+
+   checkForSpecialCharacters() { //Any special characters?:  false
+      for (let i = 0; i < this.spanishSpecialCharacters.length; i++) {
+         if (this.originalSentence.includes(this.spanishSpecialCharacters[i])) {
+            return true
+         }
+      }
+      return false
+   }
+
+   noSpecialCharacters() { //No special characters:  Hola que tal
+      const sentenceArray = this.originalSentence.split("");
+
+      for (let i = 0; i < sentenceArray.length; i++) {
+         for (let j = 0; j < this.spanishSpecialCharacters.length; j++) {
+            if (sentenceArray[i] === this.spanishSpecialCharacters[j]) {
+               sentenceArray[i] = this.regularCharacters[j]
+            }
+         }
+      }
+      return sentenceArray.join("")
+   }
+
+   noDuplicatedCharacters() { //No duplicated characters:  Hola quét
+      let removedCharacters = [...new Set(this.originalSentence)];
+      return removedCharacters.join("")
+   }
+
+   separatedIntoWords() { // Separated into words:  (3) ['Hola', 'qué', 'tal']
+      return this.originalSentence.split(" ")
+   }
+}
+
 class Game {
 
    constructor(sentence) {
@@ -7,93 +72,40 @@ class Game {
       this.gameStatus = "in progress"; 
    }
 
+   wordToStars() {
+      let gameFeedback = (this.originalSentence).split("")
 
-   oldGuess(letter) { //TO DELETE!!!!
-      if (!this.originalSentence.includes(letter)) {
-         this.attemptsLeft--
-
-         if (this.attemptsLeft <= 0) {
-            this.gameStatus = "lost";
-            return this.gameStatus
-         }
-      } 
-
-      this.gameFeedback.forEach((e, i) => {
-         if (this.originalSentence[i] === letter) {
-            this.gameFeedback[i] = letter;
-         }
-
-         if (!this.gameFeedback.includes("*")){
-            this.gameStatus = "won";
-            return this.gameStatus;
-         }
-      })
-      return this.gameFeedback;
-   }
-
-   wordToStars(sentence) {
-      let gameFeedback = (sentence).split("")
-
-      gameFeedback.forEach((x, i) => {
-         gameFeedback[i] === " " ? gameFeedback[i] = " " : gameFeedback[i] = "*"
-      });
-
-      gameFeedback = gameFeedback.join("").split(" ")
+      gameFeedback.forEach(function (x, i) {
+            gameFeedback[i] === " " ? gameFeedback[i] = " " : gameFeedback[i] = "*";
+         });
       return gameFeedback
    }
 
    guess(letter) {
-      // let matchIndexes = [];
-   
-      if (!this.originalSentence.includes(" ")) {
-   
-         if (this.originalSentence.includes(letter)) {
-            
-            for (let i = 0; i < this.originalSentence.length; i++) {
-               
-               console.log(this.originalSentence[i])
 
-               if (this.originalSentence[i] === letter) {
-                  // matchIndexes.push(i);
-                  console.log(this.gameFeedback[i])
-                  console.log(letter)
-                  this.gameFeedback[i] = letter;
-               }
-            }
+      if (!this.originalSentence.includes(letter)) {
+         this.attemptsLeft--
+
+         if (this.attemptsLeft <= 0) {
+            this.gameStatus = "lost"
+            return this.gameStatus
          }
          return this.gameFeedback
-         // return matchIndexes
       }
-      
-      if (this.originalSentence.includes(" ")) {
-         let sentenceIntoWords = this.originalSentence.split(" ")
-   
-         for (let i = 0; i < sentenceIntoWords.length; i++) {
 
-            matchIndexes.push([])
+      if (this.originalSentence.includes(letter)) {
 
-            if (sentenceIntoWords[i].includes(letter)) {
-               
-   
-               for (let j = 0; j < sentenceIntoWords[i].length; j++) {
-                  if (sentenceIntoWords[i][j] === letter) {
-                     matchIndexes[i].push(j)
-                  }
-               }
+         for (let i = 0; i < this.originalSentence.length; i++) { 
+            if (this.originalSentence[i] === letter) {
+               this.gameFeedback[i] = letter
             }
          }
 
-         return this.gameFeedback
-         // return matchIndexes
-      }
+         if (!this.gameFeedback.includes("*")) {
+            this.gameStatus = "won"
+            return this.gameStatus
+         }
+      } 
+      return this.gameFeedback
    }
 }
-
-const currentGame = new Game("mi casa")
-
-
-
-
-
-
-

@@ -1,41 +1,10 @@
-const disneyMovies = [
-   "Blanca Nieves y los siete enanos",
-   "Pinocho",
-   "Fantasía",
-   "Dumbo",
-   "Bambi",
-   "Los tres caballeros",
-   "La Cenicienta",
-   "Alicia en el país de las maravillas",
-   "Peter Pan",
-   "La dama y el vagabundo",
-   "La bella durmiente",
-   "La espada en la piedra",
-   "El libro de la selva",
-   "Los Aristogatos",
-   "Robin Hood",
-   "Bernardo y Bianca",
-   "El zorro y el sabueso",
-   "El caldero mágico",
-   "Oliver y su pandilla",
-   "La sirenita",
-   "La bella y la bestia",
-   "Aladdin",
-   "El rey león",
-   "Pocahontas",
-   "El jorobado de Notre Dame",
-   "Hércules",
-   "Mulán",
-]
-
-
 class Sentence {
 
    spanishSpecialCharacters = ["á","é","í","ó","ú","ü","Á","É","Í","Ó","Ú","Ü"];
    regularCharacters = ["a","e","i","o","u","u","A","E","I","O","U","U"];
    
    constructor(sentence) {
-      this.originalSentence = this.isArrayOrString(sentence) //Can get a random sentence or the user's input
+      this.originalSentence = this.isArrayOrString(sentence) //Can get a random sentence from an array (strings or array) or the user's input
       
       this.numberOfWords = this.separatedIntoWords(this.originalSentence).length // Create <div>
       this.totalCharacters = this.noWhitespaces(this.originalSentence).length // Create <p>
@@ -54,17 +23,25 @@ class Sentence {
       }
    }
 
-   toLowerCase(sentence) {
-      return sentence.toLowerCase()
+   toLowerCase() { //Lower case sentence:  otra más
+      return this.originalSentence.toLowerCase()
    }
 
-   noWhitespaces(sentence) {
-      return sentence.replace(/\s/g, '')
+   noWhitespaces() { //Sentence without spaces:  Holaquétal
+      return this.originalSentence.replace(/\s/g, '')
    }
 
-   noSpecialCharacters(sentence) {
-      const originalSentence = sentence;
-      const sentenceArray = originalSentence.split("");
+   checkForSpecialCharacters() { //Any special characters?:  false
+      for (let i = 0; i < this.spanishSpecialCharacters.length; i++) {
+         if (this.originalSentence.includes(this.spanishSpecialCharacters[i])) {
+            return true
+         }
+      }
+      return false
+   }
+
+   noSpecialCharacters() { //No special characters:  Hola que tal
+      const sentenceArray = this.originalSentence.split("");
 
       for (let i = 0; i < sentenceArray.length; i++) {
          for (let j = 0; j < this.spanishSpecialCharacters.length; j++) {
@@ -76,32 +53,12 @@ class Sentence {
       return sentenceArray.join("")
    }
 
-   checkForSpecialCharacters(sentence) {
-      for (let i = 0; i < this.spanishSpecialCharacters.length; i++) {
-   
-         if (sentence.includes(this.spanishSpecialCharacters[i])) {
-            return true
-         }
-      }
-      return false
-   }
-
-   noDuplicatedCharacters(sentence) {
-      let originalSentence = sentence;
-      let removedCharacters = [...new Set(originalSentence)];
+   noDuplicatedCharacters() { //No duplicated characters:  Hola quét
+      let removedCharacters = [...new Set(this.originalSentence)];
       return removedCharacters.join("")
    }
 
-   separatedIntoWords(sentence) {
-      return sentence.split(" ")
+   separatedIntoWords() { // Separated into words:  (3) ['Hola', 'qué', 'tal']
+      return this.originalSentence.split(" ")
    }
 }
-
-const randomSentence = new Sentence(disneyMovies)
-console.log(randomSentence.originalSentence)
-console.log(typeof(randomSentence.originalSentence))
-const givenSentenceSingleWord = new Sentence("casa")
-console.log(givenSentenceSingleWord.originalSentence)
-console.log(typeof(givenSentenceSingleWord.originalSentence))
-const givenSentenceMultipleWord = new Sentence("mi casa")
-console.log(typeof(givenSentenceMultipleWord.originalSentence))
