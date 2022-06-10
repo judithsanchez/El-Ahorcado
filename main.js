@@ -1,3 +1,17 @@
+const encanto = [
+   "La familia Madrigal",
+   "No se habla de Bruno",
+   "Pepa",
+   "Antonio",
+   "Félix",
+   "Abuela Alma",
+   "Casita",
+   "Las arepas son de Venezuela",
+   "Viva Colombia",
+   "Encanto",
+   "Mirabel Madrigal"
+]
+
 class Sentence {
 
    spanishSpecialCharacters = ["á","é","í","ó","ú","ü","Á","É","Í","Ó","Ú","Ü"];
@@ -108,4 +122,73 @@ class Game {
       } 
       return this.gameFeedback
    }
+}
+
+const currentSentence = [];
+const currentGame = [];
+let gameModeCounter = 0;
+let gameModeoptions = ["inputOwnSentence", encanto]
+
+function nextGameMode(){
+
+   if (gameModeCounter === (gameModeoptions.length - 1)) {
+
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "none";
+      gameModeCounter = 0;
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "flex";
+
+   } else {
+
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "none";
+      gameModeCounter++
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "flex";
+   }
+}
+
+function previousGameMode(){
+
+   if (gameModeCounter === 0) {
+
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "none";
+      gameModeCounter = gameModeoptions.length - 1;
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "flex";
+
+   } else {
+
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "none";
+      gameModeCounter--
+      document.getElementById(`gameMode${gameModeCounter}`).style.display = "flex";
+   }
+}
+
+
+
+
+function getSentence(){
+
+   if (gameModeCounter === 0) {
+
+      const userSentence = document.getElementById("user-sentence").value;
+
+      if (userSentence.length <= 0 || userSentence.length > 30) {
+         alert("Necesito entre 3 y 30 letras")
+         return
+
+      } else {
+
+         const newSentence = new Sentence(userSentence)
+         currentSentence.push(newSentence)
+
+         const newGame = new Game(newSentence.originalSentence)
+         currentGame.push(newGame) 
+      }
+
+   } else {
+
+      const newSentence = new Sentence(gameModeoptions[gameModeCounter])
+      currentSentence.push(newSentence)
+
+      const newGame = new Game(newSentence.originalSentence)
+      currentGame.push(newGame) 
+   } 
 }
